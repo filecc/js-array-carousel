@@ -67,14 +67,12 @@ prev.addEventListener("click", () => {
 });
 
 for(i=0;i<thumbs.length;i++){
-    let clicked;
     thumbs[i].addEventListener('click', (e) => {
         removeActive(current);
         addActive(parseInt(e.target.classList[1]));
         current = e.target.classList[1];
     })
 }
-
 
 function removeActive(current) {
   slides[current].classList.remove("active");
