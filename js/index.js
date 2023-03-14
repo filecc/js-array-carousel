@@ -31,22 +31,6 @@ const slides = document.querySelectorAll(".slide");
 let current = 0;
 slides[current].classList.add("active");
 
-const next = document.querySelector("#wrapper .next");
-const prev = document.querySelector("#wrapper .prev");
-
-next.addEventListener("click", () => {
-  removeActive();
-  current = (current + 1) % images.length;
-  addActive();
-});
-
-prev.addEventListener("click", () => {
-  removeActive();
-  current = (current - 1 + images.length) % images.length;
-  addActive();
-});
-
-
 /* thumbanil */
 
 let thumb = '';
@@ -65,12 +49,39 @@ const thumbs = document.querySelectorAll('.thumbs');
 thumbs[current].classList.add('active');
 
 
-function removeActive() {
+/* thumbanil */
+
+const next = document.querySelector("#wrapper .next");
+const prev = document.querySelector("#wrapper .prev");
+
+next.addEventListener("click", () => {
+  removeActive(current);
+  current = (current + 1) % images.length;
+  addActive(current);
+});
+
+prev.addEventListener("click", () => {
+  removeActive(current);
+  current = (current - 1 + images.length) % images.length;
+  addActive(current);
+});
+
+for(i=0;i<thumbs.length;i++){
+    let clicked;
+    thumbs[i].addEventListener('click', (e) => {
+        removeActive(current);
+        addActive(parseInt(e.target.classList[1]));
+        current = e.target.classList[1];
+    })
+}
+
+
+function removeActive(current) {
   slides[current].classList.remove("active");
   thumbs[current].classList.remove('active');
   thumbnail.scrollTo(current * 80 + current, 0)
 }
-function addActive() {
+function addActive(current) {
   slides[current].classList.add("active");
   thumbs[current].classList.add('active');
   thumbnail.scrollTo(current * 80 + current, 0)
