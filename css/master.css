@@ -2,6 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: white;
+    
  }
 :root {
     --app-height: 100%;
@@ -16,9 +18,9 @@
     width: 100%;
  }
  main{
+    background-color: #eee;
     height: 100vh;
     height: var(--app-height);
-    background-color: #eee;
     transition: all 1s;
     font-family: sans-serif;
  }
@@ -62,7 +64,6 @@
     border-radius: 50%;
     width: 30px;
     height: 30px;
-    color: white;
     position: absolute;
     z-index: 1000;
     top: calc(50% + 72px);
