@@ -1,15 +1,3 @@
-/* fixing window height on iPhone */
-
-const appHeight = () => {
-  document.documentElement.style.setProperty(
-    "--app-height",
-    `${window.innerHeight}px`
-  );
-};
-window.addEventListener("resize", appHeight);
-appHeight();
-/* fixing window height on iPhone */
-
 const images = ["01", "02", "03", "04", "05"];
 const wrapper = document.getElementById("wrapper");
 
@@ -53,6 +41,7 @@ thumbs[current].classList.add('active');
 
 const next = document.querySelector("#wrapper .next");
 const prev = document.querySelector("#wrapper .prev");
+const fullscreen = document.querySelector('.fullscreen');
 
 next.addEventListener("click", () => {
   removeActive(current);
@@ -73,6 +62,14 @@ for(i=0;i<thumbs.length;i++){
         current = e.target.classList[1];
     })
 }
+
+fullscreen.addEventListener('click', () => {
+    const modal = document.querySelector('.modal');
+    document.querySelector('.fullscreen i').classList.toggle('fa-up-right-and-down-left-from-center');
+    document.querySelector('.fullscreen i').classList.toggle('fa-xmark');
+    modal.classList.toggle('hidden');
+    modal.innerHTML = `<img src='./img/${images[current]}.webp' alt='image-${images[current]}'>`
+})
 
 function removeActive(current) {
   slides[current].classList.remove("active");

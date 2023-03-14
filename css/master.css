@@ -17,6 +17,23 @@
  .w-100{
     width: 100%;
  }
+
+ .modal{
+    width: 100%;
+    height: 100vh;
+    height: var(--app-height);
+    z-index: 3000;
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ccc;
+    padding: 1rem;
+ }
+ .hidden{
+    display: none;
+ }
  main{
     background-color: #eee;
     height: 100vh;
@@ -70,12 +87,21 @@
     transform: translate(0, -50%);
     margin: 0 .8rem;
     cursor: pointer;
+    font-size: 1.5rem;
  }
  .next{
     right: 0;
  }
  .prev{
     left: 0;
+ }
+ .fullscreen{
+    top: calc(100% - 40px);
+    right: 0;
+    transform: translate(0, 0);
+    background-color: transparent;
+    font-size: 1rem;
+    z-index: 4000;
  }
  .thumbnails{
     border-radius: 8px;
