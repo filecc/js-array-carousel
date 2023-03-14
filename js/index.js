@@ -80,6 +80,10 @@ function addActive(current) {
   slides[current].classList.add("active");
   thumbs[current].classList.add('active');
   thumbnail.scrollTo(current * 80 + current, 0)
+  slides[current].style.opacity = 0;
+  setTimeout(() => {
+    slides[current].style.opacity = 1;
+  }, 150);
 }
 
 
