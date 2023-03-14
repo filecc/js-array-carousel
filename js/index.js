@@ -10,8 +10,7 @@ appHeight()
 
 const images = ['01', '02', '03', '04', '05']
 const wrapper = document.getElementById('wrapper');
-const next = document.querySelector('.next');
-const prev = document.querySelector('.prev');
+
 let slide = '';
 
 for (let i= 0; i<images.length; i++){
@@ -23,31 +22,54 @@ for (let i= 0; i<images.length; i++){
 }
 
 wrapper.innerHTML += slide;
-let current = 0;
 
 const slides = document.querySelectorAll('.slide');
+let current = 0;
 slides[current].classList.add('active');
 
-let button = '';
+const next = document.querySelector('#wrapper .next');
+const prev = document.querySelector('#wrapper .prev');
+
+
 
 next.addEventListener('click', () => {
-    button = 'next';
-    console.log('next');
-   
-});
+    if (current < images.length - 1) {
+        moveForward();
+    } else {
+        removeActive();
+        current = 0;
+        addActive();
+    }
+    
+})
 prev.addEventListener('click', () => {
-    button = 'prev';
- 
-});
+    if (current === 0) {
+        removeActive();
+        current = images.length - 1;
+        addActive();
+    } else {
+       moveBackward();
+    }
+    
+})
 
-/* function changeImg(){
-    if (current < images.length && current > 0) {
-       if( button === 'next' ){
-        slides[current].classList.remove('active');
-        current++;
-        slides[current].classList.add('active');
-    } 
-       }
-       
-   
-} */
+
+function moveForward(){
+    removeActive();
+    current++;
+    addActive();
+}
+
+function moveBackward(){
+    removeActive();
+    current--;
+    addActive();
+}
+
+function removeActive(){
+    slides[current].classList.remove('active');
+}
+function addActive(){
+    slides[current].classList.add('active');
+}
+
