@@ -3,6 +3,7 @@ const wrapper = document.getElementById("wrapper");
 
 
 let slide = "";
+let thumb = '';
 
 for (let i = 0; i < images.length; i++) {
   slide += `
@@ -10,34 +11,22 @@ for (let i = 0; i < images.length; i++) {
         <img src='./img/${images[i]}.webp' alt='image-${images[i]}'>     
     </div>
     `;
-}
-
-wrapper.innerHTML += slide;
-
-
-const slides = document.querySelectorAll(".slide");
-let current = 0;
-slides[current].classList.add("active");
-
-/* thumbanil */
-
-let thumb = '';
-for(let i=0;i<images.length;i++){
     thumb+= `
     <div class="thumbs ${i}">
         <img src='./img/${images[i]}.webp' alt='image-${images[i]}'>     
     </div>
     `;
 }
-const thumbnail = document.querySelector('.thumbnails');
 
+wrapper.innerHTML += slide;
+const thumbnail = document.querySelector('.thumbnails');
 thumbnail.innerHTML += thumb;
 
+const slides = document.querySelectorAll(".slide");
 const thumbs = document.querySelectorAll('.thumbs');
-thumbs[current].classList.add('active');
+let current = 0;
 
-
-/* thumbanil */
+addActive(current);
 
 const next = document.querySelector("#wrapper .next");
 const prev = document.querySelector("#wrapper .prev");
@@ -69,7 +58,7 @@ fullscreen.addEventListener('click', () => {
     document.querySelector('.fullscreen i').classList.toggle('fa-xmark');
     modal.classList.toggle('hidden');
     modal.innerHTML = `<img src='./img/${images[current]}.webp' alt='image-${images[current]}'>`
-})
+});
 
 function removeActive(current) {
   slides[current].classList.remove("active");
@@ -80,10 +69,13 @@ function addActive(current) {
   slides[current].classList.add("active");
   thumbs[current].classList.add('active');
   thumbnail.scrollTo(current * 80 + current, 0)
-  slides[current].style.opacity = 0;
-  setTimeout(() => {
-    slides[current].style.opacity = 1;
-  }, 150);
+  fadeIn(slides[current]);
 }
 
+function fadeIn(el){
+    el.style.opacity = 0;
+    setTimeout(() => {
+      el.style.opacity = 1;
+    }, 150);
+}
 
