@@ -76,11 +76,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    color: white;
     position: absolute;
     z-index: 1000;
-    color: white;
-    top: 50%;
-    transform: translate(0 -50%);
+    top: calc(50% + 72px);
+    transform: translate(0, -50%);
     margin: 0 .8rem;
     cursor: pointer;
  }
@@ -106,8 +106,8 @@
 
  .thumbs{
     margin: 0 auto;
-    min-width: 90px;
-    max-width: 90px;
+    min-width: 80px;
+    max-width: 80px;
     height: 80px;
     flex-shrink: 1;
     position: relative;
