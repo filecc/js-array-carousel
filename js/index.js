@@ -36,6 +36,7 @@ next.addEventListener("click", () => {
   removeActive(current);
   current = (current + 1) % images.length;
   addActive(current);
+
 });
 
 prev.addEventListener("click", () => {
@@ -43,6 +44,20 @@ prev.addEventListener("click", () => {
   current = (current - 1 + images.length) % images.length;
   addActive(current);
 });
+
+window.addEventListener('keydown', (e) =>{
+  if (e.key === 'ArrowRight') {
+    removeActive(current);
+  current = (current + 1) % images.length;
+  addActive(current);
+  }
+  if (e.key === 'ArrowLeft') {
+    removeActive(current);
+  current = (current - 1 + images.length) % images.length;
+  addActive(current);
+  }
+})
+
 
 for(i=0;i<thumbs.length;i++){
     thumbs[i].addEventListener('click', (e) => {
